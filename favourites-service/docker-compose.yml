@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  favorites-service:
+    build:
+      context: .
+    container_name: favorites-service
+    network_mode: host
+    ports:
+      - "8081:8080" # http://localhost:8081
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/favoritesdb
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - favorites-db
+
+  favorites-db:
+    image: postgres:15
+    container_name: favorites-db
+    network_mode: host
+    environment:
+      - POSTGRES_DB=favoritesdb
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - favorites-data:/var/lib/postgresql/data
+
+volumes:
+  favorites-data:
