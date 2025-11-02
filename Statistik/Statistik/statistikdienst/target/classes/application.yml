@@ -1,0 +1,7 @@
+server:
+  port: 5004
+
+services:
+  recipes: ${RECIPE_SERVICE_URL:http://recipes-service:5002}
+  favorites: ${FAVORITE_SERVICE_URL:http://favorites-service:5003}
+  users: ${USER_SERVICE_URL:http://users-service:5001}

@@ -1,0 +1,12 @@
+services:
+  statistikdienst:
+    build: ./statistikdienst
+    ports:
+      - "5004:5004"
+    environment:
+      - RECIPE_SERVICE_URL=http://recipes-service:5002
+      - FAVORITE_SERVICE_URL=http://favorites-service:5003
+      - USER_SERVICE_URL=http://users-service:5001
+    depends_on:
+      - recipes-service
+      - favorites-service
