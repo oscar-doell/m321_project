@@ -75,10 +75,9 @@ The service is fully containerized and designed to be run with Docker Compose.
 1.  Press `Ctrl+C` in the terminal running the logs.
 2.  To remove the containers, run: `docker-compose down`
 
-## 6. High Availability (HA) Considerations
+## 6. High Availability (HA)
 
 This component is designed to support the system's HA goals:
 
 1.  **Service Replication:** The service is stateless (all state is in the DB). Multiple instances can be run behind a load balancer to ensure redundancy.
-2.  **Health Check:** The service exposes a Spring Boot Actuator endpoint at `/actuator/health` (not yet configured) that a load balancer can use to verify the service is alive.
-3.  **Database Redundancy:** The service relies on the PostgreSQL database. For full HA, the database itself should be configured with replication (e.g., a primary and at least one standby).
+2.  **Health Check:** The service exposes a Spring Boot Actuator endpoint at `/actuator/health` that a load balancer can use to verify the service is alive.
